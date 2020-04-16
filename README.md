@@ -1,6 +1,6 @@
 # JwtBruteCore
 
-JwtBruteCore takes a new line delimited list of canidate secrets in via stdin or from the file with passwords and tests them against a provided json web token to see if they were the secret used in the signing of the token. If the secret is discovered one can sign arbitry jwt tokens to bypass the authentication process of most webservices.
+JwtBruteCore takes a new line delimited list of canidate secrets via stdin or from the file with passwords and tests them against a provided json web token to see if they were the secret used in the signing of the token. If the secret is discovered one can sign arbitry jwt tokens to bypass the authentication process of most webservices.
 
 This version is made with .NET Core, so it can run on any platform with .NET Core installed.
 
