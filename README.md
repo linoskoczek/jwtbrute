@@ -1,16 +1,42 @@
-jwtbrute
-========
+# JwtBruteCore
 
-jwtbrute.exe takes a new line delimited list of canidate secrets in via stdin and tests them against a provided json web token to see if they were the secret used in the signing of the token. If the secret is discovered one can sign arbitry jwt tokens to bypass the authentication process of most webservices.
+JwtBruteCore takes a new line delimited list of canidate secrets in via stdin or from the file with passwords and tests them against a provided json web token to see if they were the secret used in the signing of the token. If the secret is discovered one can sign arbitry jwt tokens to bypass the authentication process of most webservices.
 
-Example Usage
-```batch
-echo secret| jwtbrute.exe eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEyMzQ1Njc4OTAsIm5hbWUiOiJKb2huIERvZSIsImFkbWluIjp0cnVlfQ.eoaDVGTClRdfxUZXiPs3f8FmJDkDE_VCQFXqKxpLsts
+This version is made with .NET Core, so it can run on any platform with .NET Core installed.
+
+## Install
+
 ```
-Output
+git clone https://github.com/linoskoczek/jwtbrute.git
+cd jwtbrute
+dotnet restore
+dotnet publish -c release --self-contained --runtime linux-x64 --framework netcoreapp2.2
+```
+
+## Usage examples
+
+**password via stdin:**
+```
+echo secret| ./JwtBruteCore eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEyMzQ1Njc4OTAsIm5hbWUiOiJKb2huIERvZSIsImFkbWluIjp0cnVlfQ.eoaDVGTClRdfxUZXiPs3f8FmJDkDE_VCQFXqKxpLsts
+```
+Output:
 > Secret was: secret
 
-## License
+**file with passwords:**
+```
+./JwtBruteCore eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEyMzQ1Njc4OTAsIm5hbWUiOiJKb2huIERvZSIsImFkbWluIjp0cnVlfQ.eoaDVGTClRdfxUZXiPs3f8FmJDkDE_VCQFXqKxpLsts /path/to/your/passwords/list.txt
+```
+Output:
+> Secret was: secret
+
+**dotnet run with passwords file**
+```
+dotnet run eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEyMzQ1Njc4OTAsIm5hbWUiOiJKb2huIERvZSIsImFkbWluIjp0cnVlfQ.eoaDVGTClRdfxUZXiPs3f8FmJDkDE_VCQFXqKxpLsts /path/to/your/passwords/list.txt
+```
+Output:
+> Secret was: secret
+
+## License of the original tool
 
 The MIT License (MIT)
 
